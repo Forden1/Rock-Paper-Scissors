@@ -68,7 +68,7 @@ function playGame(rounds){
           console.log("You Win!")
 }
      else if (computerScore>humanScore){
-          console.log("You Win!")
+          console.log("You Lose!")
      }
      else{
           console.log("Y'all tied" )
