@@ -1,3 +1,10 @@
+
+
+const resultsDiv = document.querySelector("#results");
+const btn1 = document.querySelector("#rock");
+const btn2 = document.querySelector("#paper");
+const btn3 = document.querySelector("#scissors");
+
 function getComputerChoice(){
        let choice
         let res=Math.floor(Math.random()*3)
@@ -12,67 +19,58 @@ function getComputerChoice(){
         }
         console.log
         return choice
-
-
-}
-function getHumanChoice(){
-     choices=["rock","paper","scissors"]
-     while(true){
-
-     let choice =prompt("rock/paper/scissors").toLowerCase()
-     if (choices.includes(choice)) {
-          return choice
-}
-     else{
-          console.log("Invalid move. Please try again.");
-     }
-}
 }
 
-let humanScore=0
-let computerScore=0
-function playRound(humanScore,computerScore){
-     const humanSelection = getHumanChoice();
+function getHumanChoice() {
+     return new Promise((resolve) => {
+         btn1.addEventListener("click", () => resolve("rock"), { once: true });
+         btn2.addEventListener("click", () => resolve("paper"), { once: true });
+         btn3.addEventListener("click", () => resolve("scissors"), { once: true });
+     });
+ }
+ 
+
+
+ let humanScore=0
+ let computerScore=0
+ let resultMessage=""
+async function playRound(){
+     const humanSelection = await getHumanChoice(); 
      const computerSelection = getComputerChoice();
      if (humanSelection==computerSelection){
-          console.log("Tie")
+          resultMessage="Tie!!!"
 
      }
      else if ((humanSelection=="rock"&& computerSelection=="scissors")||
           (humanSelection=="paper"&&computerSelection=="rock")||
           ( humanSelection=="scissors"&&computerSelection== "paper" )
      ){
-          console.log("You Win! " + humanSelection + " beats " + computerSelection)
+          resultMessage = `You Win! ${humanSelection} beats ${computerSelection}`;
           humanScore+=1
      }
      else{
-          console.log("You Lose! " + computerSelection + " beats " + humanSelection)
+          resultMessage = `You Lose! ${computerSelection} beats ${humanSelection}`;
           computerScore+=1
      }
-     return { humanScore, computerScore };
+     resultsDiv.innerHTML = `
      
-
-
-
+     <h2>${resultMessage}</h2>
+     <div id="onediv">
+          <p>Human choice: ${humanSelection}</p>
+          <p>Computer choice: ${computerSelection}</p>
+     </div>
+     <p>${resultMessage}</p>
+     <p>Score: Human : ${humanScore}   Computer : ${computerScore}</p>
+ `;
+     ;
+     
 }
-function playGame(rounds){
-     let humanScore=0
-     let computerScore=0
-     for(let i=0;i<rounds;i++){
-          const scores=playRound(humanScore,computerScore)
-          humanScore=scores.humanScore
-          computerScore=scores.computerScore
-          console.log(`Score after round ${i + 1}: Human ${humanScore} - Computer ${computerScore}`);
-     }
-    if (humanScore>computerScore){
-          console.log("You Win!")
-}
-     else if (computerScore>humanScore){
-          console.log("You Lose!")
-     }
-     else{
-          console.log("Y'all tied" )
-     }
-     }
-playGame(5)
 
+
+ async function startGame(){
+     while(true){
+          await playRound();
+
+     }
+}
+startGame();
