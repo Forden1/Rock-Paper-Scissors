@@ -56,11 +56,18 @@ async function playRound(){
      
      <h2>${resultMessage}</h2>
      <div id="onediv">
-          <p>Human choice: ${humanSelection}</p>
-          <p>Computer choice: ${computerSelection}</p>
+          <div class ="choice">
+               <p>Human choice:  </p>
+               <img src="${humanSelection}.png">
+          </div>
+          <div class ="choice">
+               <p>Computer choice: </p>
+               <img src="${computerSelection}.png">
+          </div>
+          
      </div>
-     <p>${resultMessage}</p>
-     <p>Score: Human : ${humanScore}   Computer : ${computerScore}</p>
+     
+     <p id="res">Score: Human : ${humanScore}   Computer : ${computerScore}</p>
  `;
      ;
      

@@ -34,6 +34,7 @@ p{
     padding-bottom: 13vh;
     display: flex;
     justify-content: space-between;
+    font-size: 25pt;
 }
 h1{
     padding-bottom: 0vh;
@@ -45,12 +46,13 @@ img{
     display: block;   
 }
 body {
+    margin-top: -20vh;
     background-image: url('360_F_634382619_pvMY6CtgERYA8401Zhf6HiwtWduWXLgp.jpg'); /* Replace with your image path */
     background-size: cover; /* Ensures the image covers the entire viewport */
     background-position: center; /* Centers the image */
     background-repeat: no-repeat; /* Prevents the image from repeating */
     background-attachment: fixed; /* Keeps the background fixed during scrolling */
-    margin: 0; /* Removes default margin around the body */
+     /* Removes default margin around the body */
     height: 100vh; /* Ensures the body takes up the full viewport height */
     overflow: hidden; /* Prevents scrolling if the content overflows */
 }
@@ -69,4 +71,22 @@ body {
     z-index: 2; /* Ensure content is on top of the overlay */
     color: white; /* Text color */
     padding: 20px; /* Padding around the text */
+}
+#onediv .choice{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+
+}
+#onediv img{
+    padding-top: ;
+    width: 230px;
+    height: 300px; 
+    
+
+}
+#res{
+    font-size: 20pt;
+    font-weight: bold;
 }
